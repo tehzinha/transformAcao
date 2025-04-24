@@ -58,6 +58,7 @@ body {
 .hero-logo {
   height: 120px;
   margin-bottom: 20px;
+  max-width: 90%;
 }
 
 .hero h2 {
@@ -99,7 +100,7 @@ body {
   color: var(--azul-claro);
 }
 
-/* Subtópicos alinhados lado a lado */
+/* Subtópicos */
 .subtopicos {
   display: flex;
   justify-content: space-between;
@@ -123,22 +124,6 @@ body {
 
 .subtopico p {
   text-align: justify;
-}
-
-/* Responsivo para títulos e subtópicos em celulares */
-@media (max-width: 768px) {
-  .section h2 {
-    font-size: 24px;
-    padding: 0 10px;
-  }
-
-  .subtopicos {
-    flex-direction: column;
-  }
-
-  .subtopico {
-    max-width: 100%;
-  }
 }
 
 .campanha {
@@ -194,4 +179,75 @@ button:hover {
 
 .contato-lista li {
   margin-bottom: 10px;
+}
+
+/* Responsivo: Tablets e Celulares */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav a {
+    margin: 0;
+  }
+
+  .hero h2 {
+    font-size: 26px;
+    padding: 0 10px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    padding: 0 15px;
+  }
+
+  .subtopicos {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .subtopico {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .subtopico p {
+    text-align: justify;
+    padding: 0 10px;
+  }
+
+  form {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+/* Responsivo: Celulares pequenos */
+@media (max-width: 480px) {
+  .hero h2 {
+    font-size: 22px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .subtopico h3 {
+    font-size: 20px;
+  }
 }
