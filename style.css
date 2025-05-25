@@ -126,9 +126,15 @@ body {
   text-align: justify;
 }
 
-.sobre h2{
-  color: white;
+.sobre {
+  background: var(--azul-claro);
+  padding: 60px 0; /* mantém o espaçamento igual ao das outras sections */
 }
+
+.sobre h2 {
+  color: var(--branco);
+}
+
 
 form {
   display: grid;
