@@ -1,6 +1,11 @@
 function verOrganograma() {
-  window.open('img/organograma.png', '_blank', 'width=800,height=600');
+  document.getElementById("organograma-modal").style.display = "block";
 }
+
+function fecharModal() {
+  document.getElementById("organograma-modal").style.display = "none";
+}
+
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
   event.preventDefault(); // impede envio padrão do formulário
 
