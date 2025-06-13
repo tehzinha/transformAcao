@@ -160,6 +160,20 @@ button {
 button:hover {
   background: var(--laranja);
 }
+.btn-secondary {
+  background-color: #f4a261;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #e76f51;
+}
 
 .footer {
   background: var(--cinza-escuro);
