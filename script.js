@@ -8,31 +8,51 @@ function fecharOrganograma() {
   document.getElementById("modalOrganograma").style.display = "none";
 }
 
-// Função da lupa (zoom) na imagem do organograma
-img.addEventListener("mousemove", (e) => {
-  const rect = img.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+// Espera o DOM carregar para pegar os elementos
+document.addEventListener("DOMContentLoaded", () => {
+  const img = document.getElementById("organogramaImg");
+  const lupa = document.getElementById("lupa");
 
-  lupa.style.display = "block";
+  if (!img || !lupa) {
+    console.error("Imagem ou lupa não encontradas no DOM.");
+    return;
+  }
 
-  // Posiciona a lupa dentro da imagem (considerando o offset da div modal-content)
-  lupa.style.left = (x - lupa.offsetWidth / 2) + "px";
-  lupa.style.top = (y - lupa.offsetHeight / 2) + "px";
+  img.addEventListener("mousemove", (e) => {
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  // Aumentar zoom (exemplo: 3x)
-  const zoom = 3;
+    lupa.style.display = "block";
 
-  lupa.style.backgroundImage = `url(${img.src})`;
-  lupa.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
-  lupa.style.backgroundPosition = `-${x * zoom - lupa.offsetWidth / 2}px -${y * zoom - lupa.offsetHeight / 2}px`;
+    // Ajusta a posição da lupa relativo à imagem
+    lupa.style.left = (x - lupa.offsetWidth / 2) + "px";
+    lupa.style.top = (y - lupa.offsetHeight / 2) + "px";
+
+    const zoom = 3;
+
+    lupa.style.backgroundImage = `url(${img.src})`;
+    lupa.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+    lupa.style.backgroundPosition = `-${x * zoom - lupa.offsetWidth / 2}px -${y * zoom - lupa.offsetHeight / 2}px`;
+  });
+
+  img.addEventListener("mouseleave", () => {
+    lupa.style.display = "none";
+  });
 });
 
-img.addEventListener("mouseleave", () => {
-  lupa.style.display = "none";
+// Formulário voluntário (não alterado)
+document.getElementById("voluntario-form").addEventListener("submit", function(event) {
+  event.preventDefault(); // impede envio padrão do formulário
+
+  emailjs.sendForm("service_f3w95js", "template_xv8exuz", this)
+    .then(function() {
+      alert("Mensagem enviada com sucesso! Obrigado pelo contato.");
+      document.getElementById("voluntario-form").reset();
+    }, function(error) {
+      alert("Ocorreu um erro: " + JSON.stringify(error));
+    });
 });
-
-
 
 
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
