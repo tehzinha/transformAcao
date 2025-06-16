@@ -91,12 +91,18 @@
 
   <!-- Modal do Organograma -->
   <div id="modalOrganograma" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
-      <h2>Organograma</h2>
-      <img src="img/organograma.png" alt="Organograma da TransformAção" class="organograma-img" />
+  <div class="modal-content">
+    <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
+    <h2>Organograma</h2>
+    <div style="position:relative;">
+      <img src="img/organograma.png" alt="Organograma da TransformAção" class="organograma-img" id="imagemOrganograma" />
+      <div class="lupa" id="lupa">
+        <img src="img/organograma.png" alt="Zoom Organograma" id="zoomImagem" />
+      </div>
     </div>
   </div>
+</div>
+
 
   <!-- Scripts no final para garantir que HTML já carregou -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
