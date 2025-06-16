@@ -214,10 +214,11 @@ button:hover {
   width: 150px;
   height: 150px;
   overflow: hidden;
-  pointer-events: none;
+  pointer-events: none; /* importante para não interferir no mouse */
   z-index: 1000;
   background-repeat: no-repeat;
-  background-size: 200%; /* aumenta o zoom */
+  background-size: 200%; /* zoom 2x */
+  cursor: zoom-in;
 }
 
 .lupa img {

@@ -10,24 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("organogramaImg");
   const lupa = document.getElementById("lupa");
 
+  if (!img || !lupa) {
+    console.error("Imagem ou lupa não encontradas no DOM.");
+    return;
+  }
+
   img.addEventListener("mousemove", function(e) {
     const rect = img.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = e.clientX - rect.left; // posição x dentro da imagem
+    const y = e.clientY - rect.top;  // posição y dentro da imagem
 
     lupa.style.display = "block";
-    lupa.style.left = (e.pageX - 75) + "px";
-    lupa.style.top = (e.pageY - 75) + "px";
+    lupa.style.left = (e.pageX - lupa.offsetWidth / 2) + "px";
+    lupa.style.top = (e.pageY - lupa.offsetHeight / 2) + "px";
 
     lupa.style.backgroundImage = `url(${img.src})`;
-    lupa.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`; // zoom 2x
-    lupa.style.backgroundPosition = `-${x * 2 - 75}px -${y * 2 - 75}px`;
+    lupa.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`;
+    lupa.style.backgroundPosition = `-${x * 2 - lupa.offsetWidth / 2}px -${y * 2 - lupa.offsetHeight / 2}px`;
   });
 
   img.addEventListener("mouseleave", function() {
     lupa.style.display = "none";
   });
 });
+
 
 
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
