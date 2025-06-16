@@ -5,29 +5,31 @@ function verOrganograma() {
 function fecharOrganograma() {
   document.getElementById("modalOrganograma").style.display = "none";
 }
-// Lupa
-const img = document.getElementById("organogramaImg");
-const lupa = document.getElementById("lupa");
-const lupaImg = document.getElementById("lupaImg");
+// Função de lupa
+document.addEventListener("DOMContentLoaded", () => {
+  const img = document.getElementById("organogramaImg");
+  const lupa = document.getElementById("lupa");
+  const lupaImg = document.getElementById("lupaImg");
 
-img.addEventListener("mousemove", function(e) {
-  lupa.style.display = "block";
-  
-  const rect = img.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  img.addEventListener("mousemove", function(e) {
+    lupa.style.display = "block";
 
-  // Posicionar a lupa no mouse
-  lupa.style.left = (e.pageX - 75) + "px";
-  lupa.style.top = (e.pageY - 75) + "px";
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  // Mover imagem dentro da lupa
-  lupaImg.style.left = (-x * 2 + 75) + "px";
-  lupaImg.style.top = (-y * 2 + 75) + "px";
-});
+    // posição da lupa
+    lupa.style.left = (e.pageX - 75) + "px";
+    lupa.style.top = (e.pageY - 75) + "px";
 
-img.addEventListener("mouseleave", function() {
-  lupa.style.display = "none";
+    // mover imagem dentro da lupa
+    lupaImg.style.left = (-x * 2 + 75) + "px";
+    lupaImg.style.top = (-y * 2 + 75) + "px";
+  });
+
+  img.addEventListener("mouseleave", function() {
+    lupa.style.display = "none";
+  });
 });
 
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
