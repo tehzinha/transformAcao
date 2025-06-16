@@ -1,14 +1,13 @@
-// Função para abrir o modal
+// Abrir o modal
 function verOrganograma() {
   document.getElementById("modalOrganograma").style.display = "block";
 }
 
-// Função para fechar o modal
+// Fechar o modal
 function fecharOrganograma() {
   document.getElementById("modalOrganograma").style.display = "none";
 }
 
-// Espera o DOM carregar para pegar os elementos
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("organogramaImg");
   const lupa = document.getElementById("lupa");
@@ -18,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  const zoom = 3;
+
   img.addEventListener("mousemove", (e) => {
     const rect = img.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -25,11 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lupa.style.display = "block";
 
-    // Ajusta a posição da lupa relativo à imagem
     lupa.style.left = (x - lupa.offsetWidth / 2) + "px";
     lupa.style.top = (y - lupa.offsetHeight / 2) + "px";
-
-    const zoom = 3;
 
     lupa.style.backgroundImage = `url(${img.src})`;
     lupa.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
@@ -40,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lupa.style.display = "none";
   });
 });
+
 
 
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
