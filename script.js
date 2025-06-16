@@ -1,10 +1,11 @@
 function verOrganograma() {
-  document.getElementById("organograma-modal").style.display = "block";
+  document.getElementById("modalOrganograma").style.display = "block";
 }
 
-function fecharModal() {
-  document.getElementById("organograma-modal").style.display = "none";
+function fecharOrganograma() {
+  document.getElementById("modalOrganograma").style.display = "none";
 }
+
 
 document.getElementById("voluntario-form").addEventListener("submit", function(event) {
   event.preventDefault(); // impede envio padrão do formulário
