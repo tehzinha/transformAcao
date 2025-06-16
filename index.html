@@ -6,7 +6,7 @@
   <title>TransformAção - Projetos Sociais</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="icon" type="image/png" href="img/logo.png" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@
       <div class="subtopico">
         <h3>Quem somos?</h3>
         <p>
-          Somos uma organização não governamental fundada pelo intuito de transformar todo tipo de dificuldade
+          Somos uma organização não governamental fundada com o intuito de transformar todo tipo de dificuldade
           em alegria para aqueles que mais precisam e necessitam de momentos felizes.
         </p>
         <button onclick="verOrganograma()" class="link-organograma">Ver organograma</button>
@@ -52,8 +52,8 @@
       <div class="subtopico">
         <h3>Missão, Visão e Valores</h3>
         <p>
-          Nossa missão é ajudar quem precisa, fazer a diferença na vida delas, agregando um valor digno. <br>
-          Nossa visão é se tornar referência em solidariedade mantendo sempre nosso compromisso com a igualdade. <br>
+          Nossa missão é ajudar quem precisa, fazer a diferença na vida delas, agregando um valor digno. <br />
+          Nossa visão é se tornar referência em solidariedade mantendo sempre nosso compromisso com a igualdade. <br />
           Nossos valores são: Solidariedade, Igualdade, Inclusão, Empatia.
         </p>
       </div>
@@ -91,18 +91,15 @@
 
   <!-- Modal do Organograma -->
   <div id="modalOrganograma" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
-    <h2>Organograma</h2>
-    <img src="img/organograma.png" alt="Organograma" class="organograma-img" id="organogramaImg" />
-    
-    <!-- Lupa que aparece no hover -->
-    <div class="lupa" id="lupa"></div>
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
+      <h2>Organograma</h2>
+      <img src="img/organograma.png" alt="Organograma" class="organograma-img" id="organogramaImg" />
+      
+      <!-- Lupa que aparece no hover -->
+      <div class="lupa" id="lupa"></div>
+    </div>
   </div>
-</div>
-
-
-
 
   <!-- Scripts no final para garantir que HTML já carregou -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>

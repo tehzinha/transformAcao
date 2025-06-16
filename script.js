@@ -1,11 +1,14 @@
+// Função para abrir o modal
 function verOrganograma() {
   document.getElementById("modalOrganograma").style.display = "block";
 }
 
+// Função para fechar o modal
 function fecharOrganograma() {
   document.getElementById("modalOrganograma").style.display = "none";
 }
-// Função de lupa
+
+// Função da lupa (zoom) na imagem do organograma
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("organogramaImg");
   const lupa = document.getElementById("lupa");
@@ -21,9 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = e.clientY - rect.top;  // posição y dentro da imagem
 
     lupa.style.display = "block";
+    // Ajusta a posição da lupa para seguir o mouse
     lupa.style.left = (e.pageX - lupa.offsetWidth / 2) + "px";
     lupa.style.top = (e.pageY - lupa.offsetHeight / 2) + "px";
 
+    // Configura o fundo da lupa para zoom na imagem original
     lupa.style.backgroundImage = `url(${img.src})`;
     lupa.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`;
     lupa.style.backgroundPosition = `-${x * 2 - lupa.offsetWidth / 2}px -${y * 2 - lupa.offsetHeight / 2}px`;
