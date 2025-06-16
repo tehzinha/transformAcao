@@ -6,8 +6,8 @@
   <title>TransformAção - Projetos Sociais</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/logo.png">
 </head>
-<link rel="icon" type="image/png" href="img/logo.png">
 
 <body>
 
@@ -30,9 +30,8 @@
   </section>
 
   <section class="section sobre" id="sobre">
-
     <h2>Sobre</h2>
-  
+
     <div class="subtopicos">
       <div class="subtopico">
         <h3>Quem somos?</h3>
@@ -40,18 +39,16 @@
           Somos uma organização não governamental fundada pelo intuito de transformar todo tipo de dificuldade
           em alegria para aqueles que mais precisam e necessitam de momentos felizes.
         </p>
-      <button onclick="verOrganograma()" class="link-organograma">Ver organograma</button>
+        <button onclick="verOrganograma()" class="link-organograma">Ver organograma</button>
+      </div>
 
-</div>
-
-  
       <div class="subtopico">
         <h3>O que fazemos?</h3>
         <p>
           Atuamos através de projetos sociais e campanhas para levar um pouco de dignidade para aqueles que mais precisam.
         </p>
       </div>
-  
+
       <div class="subtopico">
         <h3>Missão, Visão e Valores</h3>
         <p>
@@ -62,22 +59,20 @@
       </div>
     </div>
   </section>
-  
 
   <section class="section" id="voluntario">
     <h2>Seja um voluntário</h2>
     <form id="voluntario-form">
-  <input type="text" name="from_nome" placeholder="Seu nome" required />
-<input type="tel" name="from_numero" placeholder="Seu número" required />
-<input type="email" name="from_email" placeholder="Seu e-mail" required />
+      <input type="text" name="from_nome" placeholder="Seu nome" required />
+      <input type="tel" name="from_numero" placeholder="Seu número" required />
+      <input type="email" name="from_email" placeholder="Seu e-mail" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-  <button type="submit">Enviar</button>
-</form>
-
-  
   <section class="section" id="impacto">
-      <h2>Nosso Impacto</h2>
-      <p>Em breve: números e histórias das nossas ações e projetos realizados!</p>
+    <h2>Nosso Impacto</h2>
+    <p>Em breve: números e histórias das nossas ações e projetos realizados!</p>
   </section>
 
   <footer class="footer">
@@ -88,29 +83,29 @@
       <li>
         Email: <a href="mailto:turma15686@gmail.com" style="color: inherit;">turma15686@gmail.com</a>
       </li>
-
       <li>
         Instagram: <a href="https://instagram.com/transformacao" target="_blank" style="color: inherit;">@transformacao</a>
       </li>
-
     </ul>
   </footer>
-<!-- Modal do Organograma -->
-<div id="modalOrganograma" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
-    <h2>Organograma</h2>
-    <img src="img/organograma.png" alt="Organograma da TransformAção" class="organograma-img" />
-  </div>
-</div>
 
-  <script src="script.js"></script>
+  <!-- Modal do Organograma -->
+  <div id="modalOrganograma" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharOrganograma()">&times;</span>
+      <h2>Organograma</h2>
+      <img src="img/organograma.png" alt="Organograma da TransformAção" class="organograma-img" />
+    </div>
+  </div>
+
+  <!-- Scripts no final para garantir que HTML já carregou -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     (function(){
       emailjs.init("WbC_taFZ5YfBWlTzg");
     })();
   </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
