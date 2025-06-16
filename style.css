@@ -199,10 +199,32 @@ button:hover {
 }
 
 .organograma-img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+  cursor: zoom-in;
 }
+
+.lupa {
+  display: none;
+  position: absolute;
+  border: 3px solid #333;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.lupa img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  min-width: 1000px; /* tamanho grande pra ampliar */
+}
+
 
 .close-btn {
   color: #999;
@@ -216,25 +238,6 @@ button:hover {
 
 .close-btn:hover {
   color: #333;
-}
-
-/* Estilo da lupa */
-.lupa {
-  position: absolute;
-  border: 3px solid #333;
-  border-radius: 50%;
-  cursor: none;
-  /* tamanho da lupa */
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  display: none;
-  z-index: 100;
-}
-
-.lupa img {
-  position: absolute;
-  transform-origin: top left;
 }
 
 /* Link estilizado roxo */

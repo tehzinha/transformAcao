@@ -6,27 +6,27 @@ function fecharOrganograma() {
   document.getElementById("modalOrganograma").style.display = "none";
 }
 // Lupa
-const imagem = document.getElementById("imagemOrganograma");
+const img = document.getElementById("organogramaImg");
 const lupa = document.getElementById("lupa");
-const zoomImagem = document.getElementById("zoomImagem");
-const zoom = 3; // valor do zoom (pode aumentar se quiser)
+const lupaImg = document.getElementById("lupaImg");
 
-imagem.addEventListener("mousemove", function(e) {
+img.addEventListener("mousemove", function(e) {
   lupa.style.display = "block";
-  const rect = imagem.getBoundingClientRect();
+  
+  const rect = img.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  lupa.style.left = (e.clientX - lupa.offsetWidth / 2) + "px";
-  lupa.style.top = (e.clientY - lupa.offsetHeight / 2) + "px";
+  // Posicionar a lupa no mouse
+  lupa.style.left = (e.pageX - 75) + "px";
+  lupa.style.top = (e.pageY - 75) + "px";
 
-  zoomImagem.style.width = imagem.width * zoom + "px";
-  zoomImagem.style.height = imagem.height * zoom + "px";
-  zoomImagem.style.left = -x * zoom + lupa.offsetWidth / 2 + "px";
-  zoomImagem.style.top = -y * zoom + lupa.offsetHeight / 2 + "px";
+  // Mover imagem dentro da lupa
+  lupaImg.style.left = (-x * 2 + 75) + "px";
+  lupaImg.style.top = (-y * 2 + 75) + "px";
 });
 
-imagem.addEventListener("mouseleave", function() {
+img.addEventListener("mouseleave", function() {
   lupa.style.display = "none";
 });
 
