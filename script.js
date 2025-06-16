@@ -9,35 +9,29 @@ function fecharOrganograma() {
 }
 
 // Função da lupa (zoom) na imagem do organograma
-document.addEventListener("DOMContentLoaded", () => {
-  const img = document.getElementById("organogramaImg");
-  const lupa = document.getElementById("lupa");
+img.addEventListener("mousemove", (e) => {
+  const rect = img.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-  if (!img || !lupa) {
-    console.error("Imagem ou lupa não encontradas no DOM.");
-    return;
-  }
+  lupa.style.display = "block";
 
-  img.addEventListener("mousemove", function(e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.clientX - rect.left; // posição x dentro da imagem
-    const y = e.clientY - rect.top;  // posição y dentro da imagem
+  // Posiciona a lupa dentro da imagem (considerando o offset da div modal-content)
+  lupa.style.left = (x - lupa.offsetWidth / 2) + "px";
+  lupa.style.top = (y - lupa.offsetHeight / 2) + "px";
 
-    lupa.style.display = "block";
-    // Ajusta a posição da lupa para seguir o mouse
-    lupa.style.left = (e.pageX - lupa.offsetWidth / 2) + "px";
-    lupa.style.top = (e.pageY - lupa.offsetHeight / 2) + "px";
+  // Aumentar zoom (exemplo: 3x)
+  const zoom = 3;
 
-    // Configura o fundo da lupa para zoom na imagem original
-    lupa.style.backgroundImage = `url(${img.src})`;
-    lupa.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`;
-    lupa.style.backgroundPosition = `-${x * 2 - lupa.offsetWidth / 2}px -${y * 2 - lupa.offsetHeight / 2}px`;
-  });
-
-  img.addEventListener("mouseleave", function() {
-    lupa.style.display = "none";
-  });
+  lupa.style.backgroundImage = `url(${img.src})`;
+  lupa.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+  lupa.style.backgroundPosition = `-${x * zoom - lupa.offsetWidth / 2}px -${y * zoom - lupa.offsetHeight / 2}px`;
 });
+
+img.addEventListener("mouseleave", () => {
+  lupa.style.display = "none";
+});
+
 
 
 

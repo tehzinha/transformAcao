@@ -208,24 +208,16 @@ button:hover {
 
 .lupa {
    display: none;
-  position: absolute;
+  position: absolute; /* para ficar sobre a imagem */
   border: 3px solid #333;
   border-radius: 50%;
   width: 150px;
   height: 150px;
-  overflow: hidden;
-  pointer-events: none; /* importante para não interferir no mouse */
+  pointer-events: none;
   z-index: 1000;
   background-repeat: no-repeat;
-  background-size: 200%; /* zoom 2x */
+  background-size: 300%; /* zoom 3x */
   cursor: zoom-in;
-}
-
-.lupa img {
-  position: absolute;
-  width: auto;
-  height: auto;
-  min-width: 1000px; /* tamanho grande pra ampliar */
 }
 
 
