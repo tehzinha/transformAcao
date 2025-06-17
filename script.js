@@ -45,6 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+let posicaoCarrossel = 0;
+
+function moverCarrossel(direcao) {
+  const carrossel = document.querySelector(".carrossel");
+  const imagens = document.querySelectorAll(".carrossel img");
+  const imagemLargura = imagens[0].clientWidth;
+  const totalImagens = imagens.length;
+
+  posicaoCarrossel += direcao;
+
+  if (posicaoCarrossel < 0) {
+    posicaoCarrossel = totalImagens - 1;
+  } else if (posicaoCarrossel >= totalImagens) {
+    posicaoCarrossel = 0;
+  }
+
+  const deslocamento = -posicaoCarrossel * imagemLargura;
+  carrossel.style.transform = `translateX(${deslocamento}px)`;
+}
+
 
 
 

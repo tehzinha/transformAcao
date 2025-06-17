@@ -273,6 +273,77 @@ button:hover {
 .contato-lista li {
   margin-bottom: 10px;
 }
+.projetos {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.projetos h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.carrossel-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.carrossel {
+  display: flex;
+  overflow: hidden;
+  width: 500px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.carrossel img {
+  width: 500px;
+  height: auto;
+  flex-shrink: 0;
+  transition: transform 0.5s ease;
+}
+
+.descricao {
+  max-width: 300px;
+  text-align: left;
+}
+
+.descricao h3 {
+  margin-bottom: 10px;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.seta.esquerda {
+  left: 10px;
+}
+
+.seta.direita {
+  left: 530px;
+}
+
+.seta:hover {
+  background-color: #555;
+}
+
 
 /* Responsivo: Tablets e Celulares */
 @media (max-width: 768px) {
