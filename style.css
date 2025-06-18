@@ -114,6 +114,15 @@ body {
   color: var(--azul-claro);
 }
 
+.section:nth-child(even) {
+  background: #ffffff;
+}
+
+.section:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+
 /* Subtópicos */
 .subtopicos {
   display: flex;
@@ -141,13 +150,13 @@ body {
 }
 
 .sobre {
-  background: var(--azul-claro);
-  padding: 60px 0; /* mantém o espaçamento igual ao das outras sections */
+  background: #f9f9f9; /* tom de branco quebrado */
 }
 
 .sobre h2 {
-  color: var(--branco);
+  color: var(--cinza-escuro);
 }
+
 
 form {
   display: grid;
@@ -349,6 +358,19 @@ button:hover {
 .descricao h3 {
   margin-bottom: 10px;
 }
+.banner-campanha {
+  padding: 0;
+  margin: 0;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 400px;
+  object-fit: cover;
+}
+
 
 
 
