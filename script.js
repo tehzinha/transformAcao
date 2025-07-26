@@ -64,6 +64,25 @@ function moverCarrossel(direcao) {
   const deslocamento = -posicaoCarrossel * imagemLargura;
   carrossel.style.transform = `translateX(${deslocamento}px)`;
 }
+// Lógica separada para o segundo carrossel
+let indiceCarrossel2 = 0;
+
+function moverCarrossel2(direcao) {
+  const carrossel = document.querySelector(".carrossel2");
+  const imagens = carrossel.querySelectorAll("img");
+
+  indiceCarrossel2 += direcao;
+
+  if (indiceCarrossel2 < 0) {
+    indiceCarrossel2 = imagens.length - 1;
+  } else if (indiceCarrossel2 >= imagens.length) {
+    indiceCarrossel2 = 0;
+  }
+
+  const deslocamento = -indiceCarrossel2 * 300; // mesma largura do carrossel
+  carrossel.style.transform = `translateX(${deslocamento}px)`;
+}
+
 
 
 

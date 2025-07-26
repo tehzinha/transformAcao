@@ -358,6 +358,19 @@ button:hover {
 .descricao h3 {
   margin-bottom: 10px;
 }
+
+/* Zigue-zague: inverte os elementos */
+.carrossel-container.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Em telas menores, mantém empilhado */
+@media (max-width: 768px) {
+  .carrossel-container.reverse {
+    flex-direction: column;
+  }
+}
+
 .banner-campanha {
   padding: 0;
   margin: 0;
@@ -444,3 +457,13 @@ button:hover {
     font-size: 20px;
   }
 }
+@media (max-width: 768px) {
+  .carrossel-wrapper {
+    width: 100%;
+  }
+
+  .carrossel img {
+    width: 100%;
+  }
+}
+
