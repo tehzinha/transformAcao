@@ -466,4 +466,23 @@ button:hover {
     width: 100%;
   }
 }
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  margin: 20px 0;
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #f2f2f2;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cell.x { color: red; }
+.cell.o { color: blue; }
+.cell.winner { background: lightgreen; }
 
