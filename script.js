@@ -158,7 +158,6 @@ function ajustarCanvasHD(canvas) {
   jogo.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 }
 
-
 window.addEventListener('resize', () => {
   if (jogo.canvas) ajustarCanvasHD(jogo.canvas);
 });
