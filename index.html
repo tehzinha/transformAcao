@@ -146,20 +146,26 @@
   </div>
 </div>
 
-<!-- Modal do Jogo -->
-<div id="modalJogo" class="modal modal-jogo" aria-hidden="true">
-  <div class="modal-game-content">
-    <span class="close" id="fecharJogo">&times;</span>
-    <h3>Mini Game: Jovem Aprendiz</h3>
-    <canvas id="gameCanvas" width="480" height="300"></canvas>
-    <p id="placar">Papéis: 0</p>
-    <button id="btnPausar" type="button">Pausar</button>
-    <p class="game-hint">Use as setas do teclado para mover. Pegue todos os papéis!</p>
+<!-- Modal Jogo -->
+  <div id="modalJogo" class="modal modal-jogo" aria-hidden="true">
+    <div class="modal-game-content">
+      <span class="close" id="fecharJogo">&times;</span>
+      <h3>Mini Game: Jovem Aprendiz</h3>
+      <canvas id="gameCanvas" width="480" height="300"></canvas>
+      <div class="controles-celular">
+        <button data-dir="up">⬆</button>
+        <button data-dir="left">⬅</button>
+        <button data-dir="down">⬇</button>
+        <button data-dir="right">➡</button>
+      </div>
+      <p id="placar">Papéis: 0</p>
+      <button id="btnPausar" type="button">Pausar</button>
+      <p class="game-hint">Use as setas do teclado para mover. Pegue todos os papéis!</p>
+    </div>
   </div>
-</div>
 
-<!-- Toast para mensagens -->
-<div id="toast"></div>
+  <!-- Toast -->
+  <div id="toast"></div>
 
 
 

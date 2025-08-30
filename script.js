@@ -95,7 +95,7 @@ document.getElementById("voluntario-form").addEventListener("submit", function(e
     });
 });
 
-// ---- JOGO: variáveis base ----
+// ---- JOGO ----
 document.getElementById('btnJogo').addEventListener('click', abrirJogo);
 document.getElementById('fecharJogo').addEventListener('click', fecharJogo);
 
@@ -118,12 +118,12 @@ let jogo = {
     "Adquira experiência profissional valiosa e reconhecida.",
     "Descubra talentos e desenvolva competências no ambiente real."
   ],
-  player: { x: 40, y: 40, w: 40, h: 40, vel: 3.2 }, // player maior
+  player: { x: 40, y: 40, w: 40, h: 40, vel: 3.2 },
   papers: [],
-  paperSize: 28 // papéis maiores
+  paperSize: 28
 };
 
-// ---- Abrir / fechar modal do jogo ----
+// ---- Modal Jogo ----
 function abrirJogo() {
   const modal = document.getElementById('modalJogo');
   modal.classList.add('aberto');
@@ -148,21 +148,29 @@ function fecharJogo() {
 
 // ---- Responsividade ----
 function ajustarCanvasHD(canvas) {
-  const w = window.innerWidth * 0.95; // largura maior (95% da tela)
-  const h = window.innerHeight * 0.5; // mantém metade da altura
-  canvas.style.width = `${w}px`;
-  canvas.style.height = `${h}px`;
-  const ratio = window.devicePixelRatio || 1;
-  canvas.width = w * ratio;
-  canvas.height = h * ratio;
-  jogo.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  const ratio = Math.max(1, window.devicePixelRatio || 1);
+  const w = canvas.parentElement.clientWidth;
+  const h = w * 0.625;
+  canvas.width = Math.floor(w * ratio);
+  canvas.height = Math.floor(h * ratio);
+  canvas.getContext('2d').setTransform(ratio, 0, 0, ratio, 0, 0);
 }
 
-window.addEventListener('resize', () => {
-  if (jogo.canvas) ajustarCanvasHD(jogo.canvas);
+window.addEventListener('resize', () => { if (jogo.canvas) ajustarCanvasHD(jogo.canvas); });
+
+// ---- Controles ----
+document.addEventListener('keydown', e => jogo.keys[e.key.toLowerCase()] = true);
+document.addEventListener('keyup', e => jogo.keys[e.key.toLowerCase()] = false);
+
+// ---- Controles CELULAR ----
+const direcoesAtivas = {};  
+document.querySelectorAll('.controles-celular button').forEach(btn => {
+  const dir = btn.dataset.dir;  
+  btn.addEventListener('touchstart', e => { e.preventDefault(); direcoesAtivas[dir] = true; });
+  btn.addEventListener('touchend', e => { e.preventDefault(); direcoesAtivas[dir] = false; });
 });
 
-// ---- Setup & Loop ----
+// ---- Loop Jogo ----
 function iniciarJogo() {
   jogo.ativo = true;
   jogo.pausado = false;
@@ -170,14 +178,8 @@ function iniciarJogo() {
   jogo.player.x = 40;
   jogo.player.y = 40;
   atualizarPlacar();
-
   jogo.papers = Array.from({ length: 5 }, () => papelAleatorio());
-
-  document.addEventListener('keydown', onKeyDown);
-  document.addEventListener('keyup', onKeyUp);
-
   document.getElementById('btnPausar').onclick = alternarPausa;
-
   loop();
 }
 
@@ -185,8 +187,6 @@ function pararLoop() {
   jogo.ativo = false;
   jogo.pausado = false;
   cancelAnimationFrame(jogo.rafId);
-  document.removeEventListener('keydown', onKeyDown);
-  document.removeEventListener('keyup', onKeyUp);
 }
 
 function loop() {
@@ -197,32 +197,28 @@ function loop() {
   desenhar();
 }
 
-// ---- Controles ----
-function onKeyDown(e) { jogo.keys[e.key.toLowerCase()] = true; }
-function onKeyUp(e)   { jogo.keys[e.key.toLowerCase()] = false; }
-
-function alternarPausa() {
-  jogo.pausado = !jogo.pausado;
-  document.getElementById('btnPausar').textContent = jogo.pausado ? "Retomar" : "Pausar";
-}
-
-// ---- Jogo: lógica ----
+// ---- Atualização ----
 function atualizar() {
   const { player, canvas } = jogo;
   let dx = 0, dy = 0;
 
+  // Teclado
   if (jogo.keys['arrowleft'] || jogo.keys['a']) dx -= player.vel;
   if (jogo.keys['arrowright'] || jogo.keys['d']) dx += player.vel;
   if (jogo.keys['arrowup'] || jogo.keys['w']) dy -= player.vel;
   if (jogo.keys['arrowdown'] || jogo.keys['s']) dy += player.vel;
 
+  // Celular
+  if (direcoesAtivas['left']) dx -= player.vel;
+  if (direcoesAtivas['right']) dx += player.vel;
+  if (direcoesAtivas['up']) dy -= player.vel;
+  if (direcoesAtivas['down']) dy += player.vel;
+
   player.x += dx;
   player.y += dy;
 
-  const maxX = canvas.clientWidth - player.w;
-  const maxY = canvas.clientHeight - player.h;
-  player.x = Math.max(0, Math.min(player.x, maxX));
-  player.y = Math.max(0, Math.min(player.y, maxY));
+  player.x = Math.max(0, Math.min(player.x, canvas.clientWidth - player.w));
+  player.y = Math.max(0, Math.min(player.y, canvas.clientHeight - player.h));
 
   for (let i = 0; i < jogo.papers.length; i++) {
     const p = jogo.papers[i];
@@ -231,9 +227,7 @@ function atualizar() {
       atualizarPlacar();
       jogo.papers[i] = papelAleatorio();
       mostrarToast(mensagemAleatoria());
-
       if (jogo.placar % 5 === 0) jogo.player.vel = Math.min(jogo.player.vel + 0.3, 6);
-
       if (jogo.placar >= jogo.metaVencedor) {
         mostrarToast("🎉 Parabéns! Você coletou todos os papéis e venceu!");
         pararLoop();
@@ -242,6 +236,7 @@ function atualizar() {
   }
 }
 
+// ---- Desenhar ----
 function desenhar() {
   const ctx = jogo.ctx;
   const w = jogo.canvas.clientWidth;
@@ -251,13 +246,12 @@ function desenhar() {
   ctx.fillStyle = '#f7f7f7';
   ctx.fillRect(0, 0, w, h);
 
-  // grade suave
   ctx.strokeStyle = '#eeeeee';
   ctx.lineWidth = 1;
   for (let x = 0; x < w; x += 32) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
   for (let y = 0; y < h; y += 32) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
 
-  // papéis
+  // Papéis
   jogo.papers.forEach(p => {
     ctx.fillStyle = '#dfe9ff';
     ctx.fillRect(p.x, p.y, p.w, p.h);
@@ -271,7 +265,7 @@ function desenhar() {
     ctx.stroke();
   });
 
-  // player
+  // Player
   const pl = jogo.player;
   ctx.fillStyle = '#1BA1E2';
   roundRect(ctx, pl.x, pl.y, pl.w, pl.h, 6, true, false);
@@ -287,17 +281,11 @@ function papelAleatorio() {
   const margin = 16;
   const w = Math.max(100, jogo.canvas.clientWidth);
   const h = Math.max(100, jogo.canvas.clientHeight);
-  return {
-    x: Math.random() * (w - jogo.paperSize - margin) + margin,
-    y: Math.random() * (h - jogo.paperSize - margin) + margin,
-    w: jogo.paperSize,
-    h: jogo.paperSize
-  };
+  return { x: Math.random() * (w - jogo.paperSize - margin) + margin, y: Math.random() * (h - jogo.paperSize - margin) + margin, w: jogo.paperSize, h: jogo.paperSize };
 }
 
 function mensagemAleatoria() {
-  const msgs = jogo.mensagens;
-  return msgs[Math.floor(Math.random() * msgs.length)];
+  return jogo.mensagens[Math.floor(Math.random() * jogo.mensagens.length)];
 }
 
 function atualizarPlacar() {
@@ -329,3 +317,8 @@ function roundRect(ctx, x, y, w, h, r, fill, stroke) {
   if (stroke) ctx.stroke();
 }
 
+// ---- Pausar Jogo ----
+function alternarPausa() {
+  jogo.pausado = !jogo.pausado;
+  document.getElementById('btnPausar').textContent = jogo.pausado ? "Retomar" : "Pausar";
+}
