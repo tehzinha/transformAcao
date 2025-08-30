@@ -382,6 +382,80 @@ button:hover {
   display: block;
   object-fit: cover;
 }
+/* Botão Jogar no header */
+.btn-jogo {
+  margin-left: 16px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .1s ease, background .2s ease;
+}
+.btn-jogo:hover { background: rgba(255,255,255,0.12); }
+.btn-jogo:active { transform: scale(0.98); }
+
+/* Modal do jogo */
+.modal-jogo {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-jogo.aberto { display: flex; }
+
+.modal-game-content {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+#gameCanvas {
+  background: #f7f7f7;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#placar {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+#toast.visivel {
+  opacity: 1;
+}
+
+
 
 
 
